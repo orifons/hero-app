@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import { AuthContext } from "@/auth/AuthContext.ts";
 import { LoginPage } from "@/pages/auth/login/LoginPage.tsx";
@@ -13,11 +13,18 @@ export const RouterApp = () => {
         user: { logged },
     } = useContext(AuthContext);
 
+    const lastPage = localStorage.getItem("lastPage") || "/";
+
     return (
         <BrowserRouter>
             <Routes>
                 {/* Ruta pública */}
-                <Route path="/login" element={<LoginPage />} />
+                <Route
+                    path="/login"
+                    element={
+                        !logged ? <LoginPage /> : <Navigate to={lastPage} />
+                    }
+                />
 
                 {/* Rutas privadas o protegidas */}
                 <Route
