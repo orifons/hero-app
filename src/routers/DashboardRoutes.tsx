@@ -3,23 +3,34 @@ import { DcPage } from "@/pages/dc/DcPage";
 import { HeroPage } from "@/pages/hero/HeroPage";
 import { MarvelPage } from "@/pages/marvel/MarvelPage";
 import { SearchHero } from "@/pages/search/SearchHero";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { useEffect } from "react";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 
-export const DashboardRoutes = () => {
+export const DashboardRoutes = ({ isLogged }: { isLogged: boolean }) => {
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+        localStorage.setItem("lastPage", pathname);
+    }, [pathname]);
+
     return (
         <>
             <Navbar />
             <div className="px-10 pt-5 min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
-                <Routes>
-                    <Route path="/marvel" element={<MarvelPage />} />
-                    <Route path="/dc" element={<DcPage />} />
-                    <Route path="/hero/:heroId" element={<HeroPage />} />
-                    <Route path="/search" element={<SearchHero />} />
-                    <Route
-                        path="*"
-                        element={<Navigate to="/marvel" replace />}
-                    />
-                </Routes>
+                {isLogged ? (
+                    <Routes>
+                        <Route path="/marvel" element={<MarvelPage />} />
+                        <Route path="/dc" element={<DcPage />} />
+                        <Route path="/hero/:heroId" element={<HeroPage />} />
+                        <Route path="/search" element={<SearchHero />} />
+                        <Route
+                            path="*"
+                            element={<Navigate to="/marvel" replace />}
+                        />
+                    </Routes>
+                ) : (
+                    <Navigate to={"/login"}></Navigate>
+                )}
             </div>
         </>
     );
