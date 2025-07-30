@@ -20,7 +20,9 @@ export const LoginPage = () => {
             },
         });
 
-        navigate("/", { replace: true });
+        const pathRedirect = localStorage.getItem("lastPage") || "/";
+
+        navigate(pathRedirect, { replace: true });
     };
 
     return (
