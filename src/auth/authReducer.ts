@@ -6,20 +6,15 @@ export const authReducer = (
 ) => {
     switch (action.type) {
         case type.signIn:
-            state = {
+            return {
                 ...action.payload,
                 logged: true,
             };
-            localStorage.setItem("user", JSON.stringify(state));
-
-            return state;
 
         case type.logout:
-            state = {
+            return {
                 logged: false,
             };
-            localStorage.setItem("user", JSON.stringify(state));
-            return state;
 
         default:
             return state;
