@@ -29,7 +29,7 @@ export const DashboardRoutes = ({ isLogged }: { isLogged: boolean }) => {
                         />
                     </Routes>
                 ) : (
-                    <Navigate to={"/login"}></Navigate>
+                    <Navigate to={"/login"} />
                 )}
             </div>
         </>
