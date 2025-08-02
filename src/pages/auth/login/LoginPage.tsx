@@ -35,8 +35,8 @@ export const LoginPage = () => {
                     {/* Logo o icono */}
                     <div className="p-4 rounded-full mb-2">
                         <img
-                            className="w-72"
-                            src="./heroes/marvel-captain.jpg"
+                            className="w-fit"
+                            src="./superheroe.png"
                             alt="Marvel Captain"
                         />
                     </div>
