@@ -1,13 +1,12 @@
-import { AuthContext } from "@/auth/AuthContext";
 import { Button } from "@/components/ui/button.tsx";
+import useAuth from "@/hooks/useAuth";
 import { auth_types } from "@/types/auth_types";
 import { LogIn } from "lucide-react";
-import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 export const LoginPage = () => {
     const navigate = useNavigate();
-    const { dispatch } = useContext(AuthContext);
+    const { dispatch } = useAuth();
 
     const handleLogin = (e: React.FormEvent) => {
         e.preventDefault();
