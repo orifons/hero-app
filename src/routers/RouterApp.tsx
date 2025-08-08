@@ -1,8 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
-import { AuthContext } from "@/auth/AuthContext.ts";
+import useAuth from "@/hooks/useAuth.tsx";
 import { LoginPage } from "@/pages/auth/login/LoginPage.tsx";
-import { useContext } from "react";
 import { DashboardRoutes } from "./DashboardRoutes.tsx";
 
 // https://www.youtube.com/watch?v=42tFXd1PdCk
@@ -11,7 +10,7 @@ import { DashboardRoutes } from "./DashboardRoutes.tsx";
 export const RouterApp = () => {
     const {
         user: { logged },
-    } = useContext(AuthContext);
+    } = useAuth();
 
     const lastPage = localStorage.getItem("lastPage") || "/";
 
