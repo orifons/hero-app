@@ -4,11 +4,6 @@ import { authReducer, initialState } from "./authReducer";
 import { auth_types } from "@/types";
 import authApi from "./authApi";
 
-// const init = () => {
-//   const user = localStorage.getItem("user");
-//   return JSON.parse(user!) || { logged: false };
-// };
-
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [authState, dispatch] = useReducer(authReducer, initialState);
 
