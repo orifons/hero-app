@@ -7,7 +7,7 @@ let authTokenGetter: (() => string | null) | null = () =>
 let unauthorizedCallback: (() => void) | null = null;
 
 // Base URL provista por Vite: define VITE_API_BASE_URL en .env
-const baseURL: string = (import.meta)?.env?.VITE_API_BASE_URL ?? "/api";
+const baseURL: string = import.meta.env.VITE_API_BASE_URL;
 
 // Instancia centralizada de Axios
 export const apiClient: AxiosInstance = axios.create({
@@ -17,7 +17,7 @@ export const apiClient: AxiosInstance = axios.create({
     Accept: "application/json",
     "Content-Type": "application/json",
   },
-  withCredentials: false,
+  withCredentials: true,
 });
 
 // Interceptor de solicitud: añade Authorization si hay token
