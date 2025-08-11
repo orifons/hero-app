@@ -1,6 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
-import useAuth from "@/hooks/useAuth.tsx";
+import { useAuth } from "@/hooks/useAuth.tsx";
 import { LoginPage } from "@/pages/auth/login/LoginPage.tsx";
 import { DashboardRoutes } from "./DashboardRoutes.tsx";
 
@@ -8,29 +8,24 @@ import { DashboardRoutes } from "./DashboardRoutes.tsx";
 
 // Componente principal de rutas de la aplicación
 export const RouterApp = () => {
-    const {
-        user: { logged },
-    } = useAuth();
+  const {
+    authState: { logged },
+  } = useAuth();
 
-    const lastPage = localStorage.getItem("lastPage") || "/";
+  const lastPage = localStorage.getItem("lastPage") || "/";
 
-    return (
-        <BrowserRouter>
-            <Routes>
-                {/* Ruta pública */}
-                <Route
-                    path="/login"
-                    element={
-                        !logged ? <LoginPage /> : <Navigate to={lastPage} />
-                    }
-                />
+  return (
+    <BrowserRouter>
+      <Routes>
+        {/* Ruta pública */}
+        <Route
+          path="/login"
+          element={!logged ? <LoginPage /> : <Navigate to={lastPage} />}
+        />
 
-                {/* Rutas privadas o protegidas */}
-                <Route
-                    path="/*"
-                    element={<DashboardRoutes isLogged={logged} />}
-                />
-            </Routes>
-        </BrowserRouter>
-    );
+        {/* Rutas privadas o protegidas */}
+        <Route path="/*" element={<DashboardRoutes isLogged={logged} />} />
+      </Routes>
+    </BrowserRouter>
+  );
 };
