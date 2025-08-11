@@ -15,13 +15,14 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const logged = JSON.parse(localStorage.getItem("logged")!) || false;
     const checkAuth = async () => {
-      const user = await authApi.getUser();
-      if (logged) {
+      const data = await authApi.getUser();
+
+      if (logged && data) {
         dispatch({
           type: auth_types.signIn,
           payload: {
-            user: user!,
-            token: "nkvudfiuhihiudhdfvdfdvdv",
+            user: data.user,
+            token: data.token,
           },
         });
       }
