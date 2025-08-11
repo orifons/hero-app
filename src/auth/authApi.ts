@@ -17,11 +17,11 @@ const authApi = {
 
   signOut: () => {},
 
-  getUser: async (): Promise<User | null> => {
+  getUser: async (): Promise<AuthResponse | null> => {
     const token = localStorage.getItem("token");
     if (token) {
-      const data = await httpGet<User>(import.meta.env.VITE_USER_ENDPOINT);
-      return data;
+      const user = await httpGet<User>(import.meta.env.VITE_USER_ENDPOINT);
+      return { user, token };
     } else {
       localStorage.removeItem("token");
       localStorage.setItem("logged", JSON.stringify(false));
