@@ -8,7 +8,10 @@ import { useNavigate } from "react-router-dom";
 
 export const LoginPage = () => {
   const navigate = useNavigate();
-  const { dispatch } = useAuth();
+  const {
+    authState: { isLoading },
+    dispatch,
+  } = useAuth();
   const [loginForm, setLoginForm] = useState({ username: "", password: "" });
 
   const handleOnChange = ({ target }: { target: HTMLInputElement }) => {
@@ -18,6 +21,11 @@ export const LoginPage = () => {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Iniciar estado de carga
+    dispatch({
+      type: auth_types.startLoading,
+    });
 
     const { token, user } = await authApi.signIn(loginForm);
 
@@ -79,9 +87,20 @@ export const LoginPage = () => {
 
         <Button
           type="submit"
-          className="bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 rounded-lg transition"
+          disabled={isLoading}
+          className="bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 rounded-lg transition relative"
         >
-          <LogIn /> Acceder
+          {isLoading ? (
+            <span className="flex items-center justify-center w-full">
+              Iniciando sesión...
+              <div className="absolute right-4 w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+            </span>
+          ) : (
+            <span className="flex items-center gap-2">
+              <LogIn />
+              Iniciar Sesión
+            </span>
+          )}
         </Button>
       </form>
     </div>
