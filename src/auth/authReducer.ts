@@ -5,10 +5,17 @@ export const authReducer = (
   action: ActionTypes
 ): AuthState => {
   switch (action.type) {
+    case type.startLoading:
+      return {
+        ...state,
+        isLoading: true,
+      };
+
     case type.signIn:
       return {
         ...state,
         logged: true,
+        isLoading: false,
         user: action.payload?.user,
         token: action.payload?.token,
       };
@@ -17,6 +24,7 @@ export const authReducer = (
       return {
         ...state,
         logged: false,
+        isLoading: false,
         user: undefined,
         token: undefined,
       };
@@ -25,6 +33,7 @@ export const authReducer = (
       return {
         ...state,
         isInitialized: true,
+        isLoading: false,
         logged: action.payload?.logged || false,
         user: action?.payload?.user,
         token: action?.payload?.token,
@@ -35,9 +44,10 @@ export const authReducer = (
   }
 };
 
-export const initialState = {
+export const initialState: AuthState = {
   isInitialized: false,
   logged: false,
+  isLoading: true,
   user: undefined,
   token: undefined,
 };
