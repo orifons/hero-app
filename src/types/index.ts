@@ -1,6 +1,9 @@
+import type { User } from "@/interfaces/User.interface";
+
 export const auth_types = {
   signIn: "[auth] signIn",
   logout: "[auth] logout",
+  initialize: "initialize",
 };
 
 export type ActionTypes = {
@@ -15,20 +18,12 @@ export type AuthState = {
   token: string | undefined;
 };
 
-export interface User {
-  _id?: string;
-  username: string;
-  email: string;
-  createdAt?: Date;
-  name: string;
-}
-
-export interface LoginData {
+export type LoginData = {
   username: string;
   password: string;
-}
+};
 
-export interface AuthResponse {
+export type AuthResponse = {
   token: string;
   user: User;
-}
+};
