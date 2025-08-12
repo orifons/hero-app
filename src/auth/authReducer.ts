@@ -20,13 +20,8 @@ export const authReducer = (
         user: undefined,
         token: undefined,
       };
-    // case "initialize":
-    //   return {
-    //     ...state,
-    //     isInitialized: true,
-    //     logged: action.payload?.logged || false,
-    //   };
-    case "initialize":
+
+    case type.initialize:
       return {
         ...state,
         isInitialized: true,
