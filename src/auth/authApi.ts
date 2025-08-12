@@ -1,5 +1,6 @@
 import { httpGet, httpPost, setAuthTokenGetter } from "@/api/axiosConfig";
-import type { AuthResponse, LoginData, User } from "@/types";
+import type { User } from "@/interfaces/User.interface";
+import type { AuthResponse, LoginData } from "@/types";
 
 const authApi = {
   signIn: async (credentials: LoginData): Promise<AuthResponse> => {
