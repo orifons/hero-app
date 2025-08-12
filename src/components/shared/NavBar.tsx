@@ -5,8 +5,10 @@ import { Link, NavLink } from "react-router-dom";
 import { Button } from "../ui/button";
 
 export const Navbar = () => {
-  const { authState, dispatch } = useAuth();
-  const {user} = authState;
+  const {
+    authState: { user },
+    dispatch,
+  } = useAuth();
 
   const handleLogout = () => {
     dispatch({

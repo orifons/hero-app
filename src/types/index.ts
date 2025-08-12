@@ -5,7 +5,7 @@ export const auth_types = {
 
 export type ActionTypes = {
   type: string;
-  payload?: { user: User; token: string; logged?: boolean };
+  payload?: { user?: User; token?: string; logged?: boolean };
 };
 
 export type AuthState = {

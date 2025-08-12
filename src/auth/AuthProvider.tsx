@@ -8,16 +8,26 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [authState, dispatch] = useReducer(authReducer, initialState);
 
   useEffect(() => {
-    const logged = JSON.parse(localStorage.getItem("logged")!) || false;
     const checkAuth = async () => {
+      const logged = JSON.parse(localStorage.getItem("logged") || "false");
       const data = await authApi.getUser();
-
-      if (logged && data) {
+      try {
+        if (logged && data) {
+          dispatch({
+            type: auth_types.signIn,
+            payload: {
+              user: data.user,
+              token: data.token,
+            },
+          });
+        }
+      } finally {
         dispatch({
-          type: auth_types.signIn,
+          type: "initialize",
           payload: {
-            user: data.user,
-            token: data.token,
+            logged: logged,
+            user: data?.user,
+            token: data?.token,
           },
         });
       }

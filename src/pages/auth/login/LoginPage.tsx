@@ -40,11 +40,7 @@ export const LoginPage = () => {
         <div className="flex flex-col items-center gap-2">
           {/* Logo o icono */}
           <div className="p-4 rounded-full mb-2">
-            <img
-              className="w-fit"
-              src="./superheroe.png"
-              alt="Marvel Captain"
-            />
+            <img className="w-fit" src="/superheroe.png" alt="Marvel Captain" />
           </div>
           <h1 className="text-3xl font-bold text-indigo-700">Iniciar Sesión</h1>
           <p className="text-gray-400 text-sm">

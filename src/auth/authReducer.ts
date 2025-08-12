@@ -20,12 +20,19 @@ export const authReducer = (
         user: undefined,
         token: undefined,
       };
+    // case "initialize":
+    //   return {
+    //     ...state,
+    //     isInitialized: true,
+    //     logged: action.payload?.logged || false,
+    //   };
     case "initialize":
       return {
         ...state,
         isInitialized: true,
-        user: action.payload?.user,
-        token: action.payload?.token,
+        logged: action.payload?.logged || false,
+        user: action?.payload?.user,
+        token: action?.payload?.token,
       };
 
     default:
