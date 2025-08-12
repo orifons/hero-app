@@ -4,6 +4,7 @@ export const auth_types = {
   signIn: "[auth] signIn",
   logout: "[auth] logout",
   initialize: "initialize",
+  startLoading: "[auth] startLoading",
 };
 
 export type ActionTypes = {
@@ -13,6 +14,7 @@ export type ActionTypes = {
 
 export type AuthState = {
   isInitialized: boolean;
+  isLoading: boolean;
   logged: boolean;
   user: User | undefined;
   token: string | undefined;
